@@ -102,12 +102,15 @@ Prescribed Shares
 12) Maternal Sibling [AnNisa 4:12]
    a. Gets 1/6
       i. Deceased has only 1 maternal sibling
-      ii. Deceased does not have any male offspring
-      iii. Deceased does not have any male paternal ancestors
+      ii. Deceased does not have any offspring (son, daughter, or a son's children) – Kalalah [AnNisa 4:12]
+      iii. Deceased does not have a father or paternal grandfather
    b. Gets 1/3
       i. Deceased has multiple maternal siblings
-      ii. Deceased does not have any male offspring
-      iii. Deceased does not have any male paternal ancestors Residual Shares (H2)
+      ii. Deceased does not have any offspring (son, daughter, or a son's children) – Kalalah [AnNisa 4:12]
+      iii. Deceased does not have a father or paternal grandfather
+   c. A daughter, son, granddaughter or grandson (any offspring), or a father or paternal grandfather, blocks maternal siblings completely
+
+Residual Shares (H2)
 
 13) Blocking Rules
    a. Son blocks Paternal Grandson, Paternal Granddaughter, Full brother, Full sister, Paternal brother, Paternal sister, Maternal Brother, Maternal sister, Full Nephew, Paternal Nephew, Full Nephew’s son, Paternal Nephew’s son, Full paternal Uncle, Paternal paternal uncle, Full cousin, Paternal Cousin, Full cousin’s son, Paternal Cousin’s son, Full cousin’s son’s son, Paternal Cousin’s son’s son

@@ -2,7 +2,7 @@ const F=require('../site/js/engine.js');
 const data=require('../site/data/ilmsummit.json');
 let bad=0;
 for(const c of data){
-  let r; try{ r=F.calculate({counts:c.heirs,options:{literalRule12:process.argv[2]==='literal'}}); }catch(e){ console.log('#'+c.id,c.text,'CRASH',e.message); bad++; continue;}
+  let r; try{ r=F.calculate({counts:c.heirs}); }catch(e){ console.log('#'+c.id,c.text,'CRASH',e.message); bad++; continue;}
   const diffs=[];
   const got={}; r.heirs.forEach(h=>got[h.key]=h.total);
   for(const k of new Set([...Object.keys(got),...Object.keys(c.expected)])){

@@ -54,12 +54,6 @@
   }));
   buildForm();
 
-  // optional strictness switch
-  const adv = document.createElement('label');
-  adv.style.cssText = 'display:block;margin-top:14px;font-size:14px;color:var(--muted)';
-  adv.innerHTML = '<input type="checkbox" id="literal12"> Follow Rule 12 of the supplied rulings literally (maternal half-siblings are shut out only by male offspring, not by daughters). Leave unticked for the standard scholarly position that any child blocks them.';
-  $('#heirForm').after(adv);
-
   $('#resetBtn').addEventListener('click', () => {
     Object.keys(counts).forEach(k => counts[k] = 0); buildForm();
     ['estate', 'funeral', 'debts', 'wasiyyah'].forEach(i => $('#' + i).value = '');
@@ -138,9 +132,8 @@
     return `<div class="step ${s.kind}"><h4>${esc(s.title)}</h4><ul>${lis}</ul></div>`;
   }
 
-  function currentOptions() { return { literalRule12: $('#literal12').checked }; }
   $('#calcBtn').addEventListener('click', () => {
-    const res = calculate({ counts, options: currentOptions() });
+    const res = calculate({ counts });
     renderResult(res, $('#result'), { title: 'Distribution of the estate', estate: estateBlock(res) });
     $('#result').scrollIntoView({ behavior: 'smooth' });
   });
@@ -176,10 +169,10 @@
   const V = window.ILMSUMMIT || [];
   $('#vTotal').textContent = V.length;
   const KNOWN = {
-    34: 'Known difference: Rule 12 of the supplied rulings mentions only “male offspring”, so the reference site lets maternal brothers inherit alongside two daughters. The standard scholarly position (and this calculator’s default) is that a daughter also blocks maternal siblings. Tick the “Rule 12 literally” box in the calculator to reproduce the reference result.',
+    34: 'Known difference: the reference site lets maternal brothers inherit alongside two daughters. Under Qur’an 4:12 (Kalalah) maternal siblings inherit only when the deceased leaves no children or grandchildren and no father or paternal grandfather, so a daughter blocks them. This calculator follows the Qur’anic ruling (Rule 12 as corrected).',
   };
-  function runCase(c, literal) {
-    const res = calculate({ counts: c.heirs, options: { literalRule12: literal } });
+  function runCase(c) {
+    const res = calculate({ counts: c.heirs });
     const got = {}; res.heirs.forEach(h => got[h.key] = h.total);
     const diffs = [];
     new Set([...Object.keys(got), ...Object.keys(c.expected)]).forEach(k => {
@@ -192,7 +185,7 @@
   $('#runVal').addEventListener('click', () => {
     let pass = 0, known = 0, fail = 0; const rows = [];
     V.forEach(c => {
-      const r = runCase(c, false); const ok = !r.diffs.length;
+      const r = runCase(c); const ok = !r.diffs.length;
       const isKnown = !ok && KNOWN[c.id];
       if (ok) pass++; else if (isKnown) known++; else fail++;
       const status = ok ? '<span class="pass">✔ pass</span>' : isKnown ? '<span class="fail" style="color:#8f6f24">≠ known difference</span>' : '<span class="fail">✘ FAIL</span>';

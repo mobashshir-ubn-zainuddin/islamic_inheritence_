@@ -80,8 +80,7 @@
   };
 
   /* ---------- blocking (hajb), Rule 13 ---------- */
-  function computeBlocking(c, opts) {
-    opts = opts || {};
+  function computeBlocking(c) {
     const has = (k) => (c[k] || 0) > 0;
     const blk = {};
     const B = (targets, by, rule, note) => targets.forEach(t => { if (has(t) && !blk[t]) blk[t] = { by, rule, note }; });
@@ -92,8 +91,7 @@
       'A son is a nearer residuary than anyone in this line');
     if (has('grandson') && !blk.grandson) B([...SIBS, ...FAR, 'emancipator'], ['grandson'], '13b',
       "A son's son stands in for a son, so he shuts out siblings and the wider relatives");
-    const maleOffspring = has('son') || has('grandson');
-    if (opts.literalRule12 ? maleOffspring : offspring) B(['maternalBrother', 'maternalSister'],
+    if (offspring) B(['maternalBrother', 'maternalSister'],
       [has('son') ? 'son' : has('grandson') ? 'grandson' : has('daughter') ? 'daughter' : 'granddaughter'], '12',
       'Maternal siblings inherit only when the deceased leaves no children or grandchildren (Kalalah)');
     if (has('father')) B(['grandfather', 'paternalGrandmother', ...SIBS, ...FAR, 'emancipator'], ['father'], '13c, 34',
@@ -144,7 +142,7 @@
       'The estate is divided in three layers: (1) fixed Qur’anic shares (Ashab al-Furud), (2) the remainder to the nearest male-line relatives (‘Asabah / Ta’seeb), (3) if shares fall short or exceed the whole, Radd or ‘Awl.']);
 
     /* --- blocking --- */
-    const blk = computeBlocking(c, input.options);
+    const blk = computeBlocking(c);
     const e = {};
     KEYS.forEach(k => { e[k] = blk[k] ? 0 : c[k]; });
     const blockedList = Object.keys(blk).map(k => ({ key: k, count: c[k], by: blk[k].by, rule: blk[k].rule, note: blk[k].note }));
