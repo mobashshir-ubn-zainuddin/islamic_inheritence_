@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Islamic Inheritance Calculator – ʿIlm al-Farāʾiḍ</title>
+<meta name="description" content="Calculate Islamic inheritance (Farā'id) with a full step-by-step explanation of every share, famous historical cases, a validation suite, and links to Darul Ifta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@500;600;700&family=Noto+Nastaliq+Urdu&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="pattern" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="arch">
+    <p class="bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <h1><span class="ar" lang="ar" dir="rtl">عِلْمُ ٱلْفَرَائِض</span><span class="en">Islamic Inheritance Calculator</span></h1>
+    <p class="tag">Shares of the Qurʾān &amp; Sunnah — every figure explained, step by step</p>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="calc" role="tab">Calculator</button>
+    <button class="tab" data-tab="cases" role="tab">Famous Cases</button>
+    <button class="tab" data-tab="validate" role="tab">Test Suite</button>
+    <button class="tab" data-tab="ask" role="tab">Ask a Mufti</button>
+    <button class="tab" data-tab="rules" role="tab">Rulings</button>
+  </nav>
+</header>
+
+<main>
+  <!-- CALCULATOR -->
+  <section id="tab-calc" class="panel active">
+    <div class="card">
+      <h2>1 · The deceased &amp; the estate</h2>
+      <div class="row">
+        <div class="field">
+          <label>The deceased was</label>
+          <div class="seg" id="gender">
+            <button type="button" data-g="male" class="on">Male</button>
+            <button type="button" data-g="female">Female</button>
+          </div>
+        </div>
+        <div class="field"><label for="estate">Total estate</label><input id="estate" type="number" min="0" step="any" placeholder="e.g. 1000000"></div>
+        <div class="field"><label for="funeral">Funeral &amp; burial costs</label><input id="funeral" type="number" min="0" step="any" placeholder="0"></div>
+        <div class="field"><label for="debts">Debts &amp; unpaid mahr</label><input id="debts" type="number" min="0" step="any" placeholder="0"></div>
+        <div class="field"><label for="wasiyyah">Bequest (wasiyyah)</label><input id="wasiyyah" type="number" min="0" step="any" placeholder="0"></div>
+        <div class="field"><label for="cur">Currency</label><input id="cur" type="text" value="" maxlength="6" placeholder="PKR / $ / ₹"></div>
+      </div>
+      <p class="hint">Entering an amount is optional – without it you still get exact fractions. Funeral costs, then debts, are paid first; a bequest may not exceed ⅓ of what remains and may not go to an heir (Qurʾān 4:11–12).</p>
+    </div>
+
+    <div class="card">
+      <h2>2 · Who survived the deceased?</h2>
+      <p class="hint">Use + / − to enter how many of each relative are alive. Leave everything else at 0.</p>
+      <div id="heirForm"></div>
+      <div class="actions">
+        <button class="btn primary" id="calcBtn" type="button">Calculate shares</button>
+        <button class="btn ghost" id="resetBtn" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div id="result"></div>
+  </section>
+
+  <!-- FAMOUS CASES -->
+  <section id="tab-cases" class="panel">
+    <div class="card">
+      <h2>Famous cases from the Sunnah &amp; the Companions</h2>
+      <p class="hint">Each case is calculated live by the same engine. Press <b>Explain step by step</b> to see the full working, or <b>Load in calculator</b> to experiment.</p>
+    </div>
+    <div id="caseList"></div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section id="tab-validate" class="panel">
+    <div class="card">
+      <h2>Validation against the ʿIlm Summit test cases</h2>
+      <p>The calculator is checked against <span id="vTotal">…</span> reference cases published by the ʿIlm Summit inheritance project (<a href="http://inheritance.ilmsummit.org/projects/inheritance/testcasespage.aspx" target="_blank" rel="noopener">source</a>). The full set is also provided as an Excel workbook: <a href="data/Inheritance_TestCases_ilmsummit.xlsx" download>Inheritance_TestCases_ilmsummit.xlsx</a>.</p>
+      <div class="actions"><button class="btn primary" id="runVal" type="button">Run all test cases</button></div>
+      <div id="valSummary"></div>
+    </div>
+    <div id="valList"></div>
+  </section>
+
+  <!-- ASK A MUFTI -->
+  <section id="tab-ask" class="panel">
+    <div class="card">
+      <h2>Ask a question to a Darul Ifta</h2>
+      <p>This calculator applies fixed rules and cannot replace a qualified mufti. Real estates often involve details a form cannot capture – missing persons, adopted children, disputed wills, unborn children, differing school opinions, and more. For anything beyond the basic situations, please ask a scholar.</p>
+      <div class="ifta-grid">
+        <a class="ifta" href="https://darulifta-deoband.com/en" target="_blank" rel="noopener">
+          <span class="ifta-name">Darul Uloom Deoband</span><span class="ifta-sub">Darul Ifta · English</span><span class="ifta-go">darulifta-deoband.com/en ↗</span>
+        </a>
+        <a class="ifta" href="https://darulifta-deoband.com/ur" target="_blank" rel="noopener">
+          <span class="ifta-name urdu" lang="ur" dir="rtl">دارالعلوم دیوبند</span><span class="ifta-sub">دارالافتاء · اردو</span><span class="ifta-go">darulifta-deoband.com/ur ↗</span>
+        </a>
+        <a class="ifta" href="https://www.banuri.edu.pk/en" target="_blank" rel="noopener">
+          <span class="ifta-name">Jamia Uloom-ul-Islamia, Banuri Town</span><span class="ifta-sub">English</span><span class="ifta-go">banuri.edu.pk/en ↗</span>
+        </a>
+        <a class="ifta" href="https://www.banuri.edu.pk/darulifta" target="_blank" rel="noopener">
+          <span class="ifta-name urdu" lang="ur" dir="rtl">جامعہ علوم اسلامیہ بنوری ٹاؤن</span><span class="ifta-sub">دارالافتاء · اردو</span><span class="ifta-go">banuri.edu.pk/darulifta ↗</span>
+        </a>
+      </div>
+      <p class="hint">Tip: when you ask, mention exactly who is alive, who has died (and in what order), the estate details, and whether there is a will. You can print the calculator’s result page and attach it to your question.</p>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="tab-rules" class="panel">
+    <div class="card prose" id="rulesBody"></div>
+  </section>
+</main>
+
+<footer>
+  <p class="ar-foot" lang="ar" dir="rtl">وَٱللَّهُ أَعْلَمُ بِٱلصَّوَابِ</p>
+  <p>Based on the inheritance rulings supplied with this project. This tool is an aid for learning and estimation, not a fatwa. Please confirm the final distribution with a qualified mufti.</p>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/cases.js"></script>
+<script src="data/ilmsummit.js"></script>
+<script src="data/rules.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
