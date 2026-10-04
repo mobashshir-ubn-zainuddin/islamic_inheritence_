@@ -94,7 +94,7 @@ a{color:var(--emerald-600)}
 /* results */
 .summary{overflow-x:auto}
 table.res{width:100%; border-collapse:collapse; font-size:15px; margin-top:8px}
-table.res th{background:var(--emerald-700); color:var(--cream); text-align:left; padding:9px 10px; font-weight:600; white-space:nowrap}
+table.res th{background:var(--emerald-700); color:var(--cream); text-align:start; padding:9px 10px; font-weight:600; white-space:nowrap}
 table.res td{padding:9px 10px; border-bottom:1px solid #e3d8b4; vertical-align:top}
 table.res tr:nth-child(even) td{background:rgba(201,162,75,.08)}
 table.res td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
@@ -103,18 +103,18 @@ table.res tr.zero td{color:var(--muted)}
 .bar{display:flex; height:30px; border-radius:8px; overflow:hidden; margin:12px 0 4px; border:1px solid var(--gold-dark)}
 .bar span{display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; overflow:hidden; white-space:nowrap; text-shadow:0 1px 2px rgba(0,0,0,.5)}
 .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--muted)}
-.legend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:4px; vertical-align:-1px}
+.legend i{display:inline-block; width:11px; height:11px; border-radius:3px; margin-inline-end:4px; vertical-align:-1px}
 .badges{display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 10px}
 .badge{background:var(--parchment); border:1px solid var(--gold); color:var(--gold-dark); font-weight:600; font-size:13px; padding:3px 12px; border-radius:999px}
-.why{font-size:14px; color:#2e3b37; margin:4px 0 0; padding-left:18px}
+.why{font-size:14px; color:#2e3b37; margin:4px 0 0; padding-inline-start:18px}
 .why li{margin:2px 0}
 .why .ref{color:var(--gold-dark); font-style:italic}
-.step{border-left:4px solid var(--gold); background:#fffdf6; padding:10px 14px; margin:12px 0; border-radius:0 10px 10px 0}
+.step{border-inline-start:4px solid var(--gold); background:#fffdf6; padding:10px 14px; margin:12px 0; border-start-end-radius:10px; border-end-end-radius:10px}
 .step h4{margin:0 0 6px; font-family:"Cormorant Garamond",serif; font-size:20px; color:var(--emerald-700)}
-.step ul{margin:0; padding-left:18px}
+.step ul{margin:0; padding-inline-start:18px}
 .step li{margin:4px 0}
-.step.awal{border-color:var(--rose)}.step.radd{border-color:#3b6e9a}.step.final{border-color:var(--ok); background:#f0f9f3}
-.step.special{border-color:#7a4fa0}
+.step.awal{border-inline-start-color:var(--rose)}.step.radd{border-inline-start-color:#3b6e9a}.step.final{border-inline-start-color:var(--ok); background:#f0f9f3}
+.step.special{border-inline-start-color:#7a4fa0}
 .excl{color:var(--rose)}
 .estate-box{background:var(--parchment); border:1px dashed var(--gold-dark); border-radius:10px; padding:10px 14px; margin:10px 0}
 
@@ -137,7 +137,7 @@ details.v{background:#fffdf6; border:1px solid #e0d3a8; border-radius:9px; margi
 details.v.bad{border-color:var(--rose); background:#fff4f2}
 details.v summary{cursor:pointer; font-weight:600}
 .cmp{width:100%; border-collapse:collapse; font-size:14px; margin:8px 0}
-.cmp th,.cmp td{border:1px solid #e0d3a8; padding:4px 8px; text-align:left}
+.cmp th,.cmp td{border:1px solid #e0d3a8; padding:4px 8px; text-align:start}
 .cmp td.bad{background:#fde6e1}
 
 /* ifta */
@@ -150,7 +150,7 @@ details.v summary{cursor:pointer; font-weight:600}
 .ifta-name.urdu{font-family:"Noto Nastaliq Urdu",Amiri,serif; font-size:21px; line-height:2}
 .ifta-sub{opacity:.9; font-size:14px}.ifta-go{margin-top:6px; font-size:13px; color:var(--gold-light)}
 
-.prose h3{margin-top:22px}.prose ol,.prose ul{padding-left:20px}.prose li{margin:3px 0}
+.prose h3{margin-top:22px}.prose ol,.prose ul{padding-inline-start:20px}.prose li{margin:3px 0}
 .prose .rule-n{font-weight:700; color:var(--emerald-700)}
 .prose pre{white-space:pre-wrap; font:inherit}
 
@@ -168,3 +168,27 @@ footer{text-align:center; color:#b9cec7; padding:10px 16px 40px; max-width:760px
   body{background:#fff}
   .card{box-shadow:none}
 }
+
+/* language switch + Urdu (right-to-left) layout; Arabic text keeps its own Amiri styling via [lang="ar"] */
+.langbar{max-width:860px; margin:0 auto 12px; display:flex; justify-content:flex-end}
+.langbtn{font:600 15px "Source Sans 3","Noto Nastaliq Urdu",sans-serif; cursor:pointer; color:var(--emerald-900); background:var(--gold); border:1px solid var(--gold-light); border-radius:999px; padding:6px 20px; transition:.2s}
+.langbtn:hover{filter:brightness(1.1)}
+.prose h4.sect{font-family:"Cormorant Garamond",serif; font-size:22px; color:var(--gold-dark); margin:26px 0 4px; border-bottom:1px solid var(--gold)}
+.prose div{margin:2px 0}
+html[lang="ur"] body,html[lang="ur"] button,html[lang="ur"] input,html[lang="ur"] .card h2,html[lang="ur"] .card h3,html[lang="ur"] .step h4,html[lang="ur"] .prose h4.sect,
+html[lang="ur"] .hero h1 .en,html[lang="ur"] .tag,html[lang="ur"] .ifta-name,html[lang="ur"] .vsum b{font-family:"Noto Nastaliq Urdu","Source Sans 3",serif}
+html[lang="ur"] body{line-height:2.2}
+html[lang="ur"] .card h2{font-size:24px; line-height:2}
+html[lang="ur"] .card h3{font-size:18px; line-height:2}
+html[lang="ur"] .step h4{font-size:18px; line-height:2}
+html[lang="ur"] .hero h1 .en{font-size:clamp(20px,3.6vw,30px); line-height:2}
+html[lang="ur"] .tab,html[lang="ur"] .btn{line-height:1.9}
+html[lang="ur"] .hint,html[lang="ur"] .why,html[lang="ur"] table.res td,html[lang="ur"] .step li{font-size:14px}
+html[lang="ur"] .heir .nm i,html[lang="ur"] [lang="ar"]{font-family:Amiri,serif; line-height:1.6}
+html[lang="ur"] .heir .nm b{font-size:14px; line-height:1.9}
+html[dir="rtl"] .field input[type="number"],html[dir="rtl"] .field input[type="text"]{text-align:right}
+html[dir="rtl"] .tabs{direction:rtl}
+html[dir="rtl"] .ifta-go{text-align:right}
+@media print{ .langbar{display:none} }
+html[lang="ur"] .seg button{line-height:2.1; padding:6px 10px; overflow:visible}
+html[lang="ur"] .field label{line-height:2}

@@ -8,3 +8,6 @@ Open `site/index.html` in any browser (no build, no server needed).
 - `Inheritance_TestCases_ilmsummit.xlsx` – the same reference cases as Excel (sheets: Test Cases, By Individual)
 - `tools/scrape.py` re-downloads the reference cases; `tools/build_data.py` rebuilds the site data;
   `node tools/validate.js` and `node tools/test_famous.js` run the tests from the command line.
+Language: the header button switches the whole site between English and Urdu (Arabic text is never translated).
+Strings live in `site/js/i18n.js`, Urdu famous-case text in `site/js/cases.js`, the Urdu rulings in `tools/rules_ur.txt` (-> `site/data/rules_ur.js`).
+`node tools/test_i18n.js` checks that the Urdu and English results are identical and no translation key is missing.
